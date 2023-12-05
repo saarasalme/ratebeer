@@ -1,7 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ratebeer -sovellus Ruby on Rails kurssia varten
+
 
 Things you may want to cover:
 
