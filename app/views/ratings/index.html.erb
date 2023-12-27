@@ -1,0 +1,14 @@
+<h2>List of ratings</h2>
+
+
+<div id="ratings">
+  <ul>
+  <% @ratings.each do |rating| %>
+     <li> <%= render rating %> <%= button_to 'delete', rating_path(rating.id), method: :delete ,form: { data: { 'turbo-confirm': 'Are you sure?' } }%> </li>
+  <% end %>
+  </ul>
+</div>
+
+<p>
+  <%=link_to 'new rating', new_rating_path%>
+</p>
