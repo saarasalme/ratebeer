@@ -1,0 +1,49 @@
+<p style="color: green"><%= notice %></p>
+
+<div id="<%= dom_id @user %>">
+  <p>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </p>
+
+</div>
+
+  <p>
+    <% if @user.ratings.empty? %>
+    Has not yet made ratings!
+    <% else %>
+    Has made <%=pluralize(@user.ratings.count, "rating", plural: "ratings")%> with an average of <%=@user.average_rating%>
+    <% end %>
+  </p>
+
+<div id="ratings">
+  <ul>
+  <% @user.ratings.each do |rating| %>
+    <li><%= "#{rating.to_s}" %>
+      <% if @user == current_user %>
+        <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<% if @user.beer_clubs.empty? %>
+  <p>User does not yet belong to any clubs</p>
+<% else %>
+  <p>User belongs to clubs:</p>
+  <ul>
+    <% @user.beer_clubs.each do |club| %>
+      <li><%= link_to club.name, club %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div>
+  <% if current_user == @user %>
+    <%= link_to"Edit this user", edit_user_path(@user) %> |
+  <% end %>
+  <%= link_to "Back to users", users_path %>
+
+  <%= button_to("Destroy this user", @user, method: :delete) if current_user == @user %>
+</div>

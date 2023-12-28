@@ -1,0 +1,7 @@
+<p style="color: red"><%= notice %></p>
+<h1>Join a club</h1>
+
+<%= form_with url: membership_path, method: :post do |form| %>
+<%= form.collection_select :beer_club_id, @beer_clubs, :id, :name %>
+<%= form.submit "Join"%>
+<% end %>
