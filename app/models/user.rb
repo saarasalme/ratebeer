@@ -14,4 +14,21 @@ class User < ApplicationRecord
   has_many :beers, through: :ratings
   has_many :memberships, dependent: :destroy
   has_many :beer_clubs, -> { distinct }, through: :memberships
+
+  def favorite_beer
+    return nil if ratings.empty?
+  
+    ratings.order(score: :desc).limit(1).first.beer
+  end
+
+  def favorite_style
+    return nil if ratings.empty?
+    beers.group(:style).count.sort_by{ |_,value| value }.reverse[0][0]
+  end
+
+  def favorite_brewery
+    return nil if beers.empty?
+    beers.group(:brewery_id).map(&:brewery)
+      .sort_by(&:average_rating).reverse[0]
+  end
 end

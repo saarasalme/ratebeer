@@ -1,0 +1,19 @@
+irb(main):052> Rating.all.select { |r| r.beer.nil? }.each(&:delete)
+  Rating Load (1.4ms)  SELECT "ratings".* FROM "ratings"
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT ?  [["id", 9], ["LIMIT", 1]]
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT ?  [["id", 9], ["LIMIT", 1]]
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT ?  [["id", 10], ["LIMIT", 1]]
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT ?  [["id", 10], ["LIMIT", 1]]
+  Beer Load (0.1ms)  SELECT "beers".* FROM "beers" WHERE "beers"."id" = ? LIMIT ?  [["id", 11], ["LIMIT", 1]]
+  Rating Destroy (2.5ms)  DELETE FROM "ratings" WHERE "ratings"."id" = ?  [["id", 10]]
+=> 
+[#<Rating:0x0000000105b528f8
+  id: 10,
+  score: 12,
+  beer_id: 11,
+  created_at: Wed, 27 Dec 2023 10:25:31.699936000 UTC +00:00,
+  updated_at: Wed, 27 Dec 2023 10:25:31.699936000 UTC +00:00>]
+irb(main):053> 

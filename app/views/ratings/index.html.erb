@@ -9,6 +9,12 @@
   </ul>
 </div>
 
+<% if @ratings.empty? %>
+  <p>No ratings yet</p>
+<% else %>
+  <p>Total ratings: <%= @ratings.count %></p>
+<% end %>
+
 <p>
   <%=link_to 'new rating', new_rating_path%>
 </p>
