@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RatingsController < ApplicationController
+  before_action :ensure_that_signed_in, except: [:index, :show]
   def index
     @ratings = Rating.all
   end

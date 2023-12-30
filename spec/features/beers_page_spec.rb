@@ -8,7 +8,9 @@ describe "Beers page" do
   end
 
   describe "create new beer" do
+    let!(:user) { FactoryBot.create :user }
     before :each do
+      sign_in(username: "Pekka", password: "Foobar1")
       visit new_beer_path
 
       expect(page).to have_content("New beer")
