@@ -1,8 +1,7 @@
-
 class MembershipsController < ApplicationController
   def new
     @user = current_user
-    @beer_clubs = BeerClub.all.filter { |club| !@user.beer_clubs.include?(club)}
+    @beer_clubs = BeerClub.all.filter { |club| !@user.beer_clubs.include?(club) }
   end
 
   def create
@@ -17,6 +16,5 @@ class MembershipsController < ApplicationController
   end
 
   def destroy
-
   end
 end
