@@ -28,7 +28,6 @@ class User < ApplicationRecord
 
   def favorite_brewery
     return nil if beers.empty?
-    beers.group(:brewery_id).map(&:brewery)
-      .sort_by(&:average_rating).reverse[0]
+    beers.select(:brewery_id).distinct.map(&:brewery).sort_by(&:average_rating).reverse[0]
   end
 end
